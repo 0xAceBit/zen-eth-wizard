@@ -113,7 +113,7 @@ export default function MarketDetail() {
                   labelStyle={{ color: '#A3A3A3' }}
                   formatter={(v: any) => [`$${Number(v).toLocaleString()}`, 'Price']}
                 />
-                <Line type="monotone" dataKey="price" stroke="#9E7FFF" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="price" stroke="#00C076" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>

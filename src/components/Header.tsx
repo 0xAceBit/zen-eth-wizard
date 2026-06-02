@@ -12,11 +12,11 @@ export default function Header() {
     `text-sm font-medium transition-colors ${active ? 'text-white' : 'text-textSecondary hover:text-white'}`;
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-black/40 border-b border-border">
+    <header className="sticky top-0 z-40 bg-background/95 border-b border-borderSubtle">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/85 to-accent/85 border border-white/10 flex items-center justify-center shadow-md">
-            <span className="text-white font-black text-sm">N</span>
+          <div className="w-8 h-8 rounded-control bg-surfaceElevated border border-border flex items-center justify-center">
+            <span className="text-primary font-black text-sm">N</span>
           </div>
           <div className="leading-tight">
             <div className="font-bold tracking-tight">Novyn</div>
@@ -42,7 +42,7 @@ export default function Header() {
             </button>
           ) : (
             <div className="flex items-center gap-2">
-              <div className="hidden sm:flex flex-col items-end leading-tight px-3 py-1.5 rounded-lg bg-surface border border-border">
+              <div className="hidden sm:flex flex-col items-end leading-tight px-3 py-1.5 rounded-control bg-surface border border-border">
                 <span className="text-xs text-textSecondary font-mono">{shortAddr(address)}</span>
                 <span className="text-sm font-mono font-semibold">{balance} <span className="text-primary">zkLTC</span></span>
               </div>

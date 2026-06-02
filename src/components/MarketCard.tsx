@@ -9,7 +9,7 @@ export default function MarketCard({ m }: { m: Market }) {
   const downPct = 100 - upPct;
 
   return (
-    <Link to={`/markets/${m.id}`} className="card p-5 block hover:border-primary transition-colors group">
+    <Link to={`/markets/${m.id}`} className="card p-card block hover:border-primary transition-colors group">
       <div className="flex items-center justify-between mb-3">
         <span className="chip font-mono">{m.asset}/USD</span>
         <span className="flex items-center gap-1 text-xs text-textSecondary">
@@ -25,7 +25,7 @@ export default function MarketCard({ m }: { m: Market }) {
         Now <span className="text-white">${m.currentPrice.toLocaleString()}</span>
       </div>
 
-      <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3">
+      <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3 bg-borderSubtle">
         <div className="bg-success transition-all" style={{ width: `${upPct}%` }} />
         <div className="bg-error transition-all" style={{ width: `${downPct}%` }} />
       </div>
