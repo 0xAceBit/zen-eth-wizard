@@ -14,3 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+import { Buffer } from 'buffer';
+
+window.Buffer = Buffer;
