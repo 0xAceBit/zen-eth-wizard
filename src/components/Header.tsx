@@ -15,11 +15,11 @@ export default function Header() {
     <header className="sticky top-0 z-40 backdrop-blur-md bg-black/40 border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="text-white font-black text-sm">C</span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[0_0_20px_rgba(158,127,255,0.5)]">
+            <span className="text-white font-black text-sm">N</span>
           </div>
           <div className="leading-tight">
-            <div className="font-bold tracking-tight">CryptoOracle</div>
+            <div className="font-bold tracking-tight">Novyn</div>
             <div className="text-[10px] text-textSecondary font-mono">on LitVM</div>
           </div>
         </Link>
