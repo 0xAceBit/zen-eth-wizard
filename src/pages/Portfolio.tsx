@@ -1,13 +1,34 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Wallet, ExternalLink } from 'lucide-react';
 import { useWallet } from '../contexts/WalletContext';
 import { shortAddr } from '../lib/wallet';
-import { addressUrl } from '../config/network';
+import { addressUrl, txUrl } from '../config/network';
 import FaucetButton from '../components/FaucetButton';
 import { MARKETS } from '../data/markets';
 
 export default function Portfolio() {
   const { address, balance, isOnLitVM, connect, switchToLitVM } = useWallet();
+
+  const [positions, setPositions] = useState<{ id: string; side: 'UP' | 'DOWN'; amount: number; txHash?: string }[]>([]);
+
+  useEffect(() => {
+    if (address) {
+      try {
+        const localKey = `novyn_positions_${address.toLowerCase()}`;
+        const existingRaw = localStorage.getItem(localKey);
+        if (existingRaw) {
+          setPositions(JSON.parse(existingRaw));
+        } else {
+          setPositions([]);
+        }
+      } catch (err) {
+        console.error('Failed to load local positions:', err);
+      }
+    } else {
+      setPositions([]);
+    }
+  }, [address]);
 
   if (!address) {
     return (
@@ -19,10 +40,6 @@ export default function Portfolio() {
       </div>
     );
   }
-
-  // Positions are derived on-chain in production; for the testnet UI we show none until contracts are deployed.
-  const positions: { id: string; side: 'UP' | 'DOWN'; amount: number }[] = [];
-
   return (
     <div className="pt-10">
       <h1 className="text-3xl font-bold mb-1">Your portfolio</h1>

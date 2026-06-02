@@ -57,6 +57,24 @@ export default function MarketDetail() {
       });
       showToast(`Stake submitted: ${amount} zkLTC ${side}`, 'success', txUrl(tx.hash));
       await tx.wait();
+
+      // Save position to localStorage
+      try {
+        const localKey = `novyn_positions_${address.toLowerCase()}`;
+        const existingRaw = localStorage.getItem(localKey);
+        const existing = existingRaw ? JSON.parse(existingRaw) : [];
+        const newPos = {
+          id: market.id,
+          side: side,
+          amount: parsed,
+          txHash: tx.hash,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(localKey, JSON.stringify([newPos, ...existing]));
+      } catch (err) {
+        console.error('Failed to save position locally:', err);
+      }
+
       showToast(`Confirmed on LitVM ✓`, 'success', txUrl(tx.hash));
     } catch (e: any) {
       showToast(e?.shortMessage || e?.message || 'Transaction failed', 'error');
