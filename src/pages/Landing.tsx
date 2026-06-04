@@ -16,6 +16,11 @@ export default function Landing() {
   const { connect, address, switchToLitVM, isOnLitVM } = useWallet();
   const trending = MARKETS.slice(0, 3);
 
+  const socials: { name: string; url: string }[] = [
+    { name: 'X', url: 'https://x.com/LitAsset' },
+    { name: 'Discord', url: 'https://discord.gg/XqE9qp9pN' },
+    { name: 'Github', url: 'https://github.com/0xAceBit/zen-eth-wizard' },
+  ];
   const primaryCta = !address
     ? { label: 'Start Predicting', onClick: connect }
     : !isOnLitVM
@@ -45,6 +50,11 @@ export default function Landing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
+              <img
+                src="/title-image.svg"
+                alt="Novyn page title image"
+                className="w-16 h-16 mb-6 rounded-3xl border border-white/10 bg-[#091016] p-2"
+              />
               <div className="chip mb-6">
                 <Activity size={13} className="text-primary" />
                 <span>LitVM Rollup · Live Testnet</span>
@@ -377,32 +387,44 @@ export default function Landing() {
         </div>
       </Section>
 
-      {/* ==================== 6. FOOTER ==================== */}
-      <footer className="mt-24 pt-16 border-t border-borderSubtle relative">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
-          <div className="flex flex-col text-left">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-control bg-surfaceElevated border border-border flex items-center justify-center">
-                <span className="text-primary font-black text-sm">N</span>
+        {/* ==================== 6. FOOTER ==================== */}
+        <footer className="mt-24 pt-16 border-t border-borderSubtle relative">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
+            <div className="flex flex-col text-left">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-8 h-8 rounded-control bg-surfaceElevated border border-border flex items-center justify-center">
+                  <span className="text-primary font-black text-sm">N</span>
+                </div>
+
+                <div>
+                  <span className="font-bold text-base tracking-tight text-white">
+                    Novyn
+                  </span>
+                  <div className="text-[10px] text-textSecondary font-mono">
+                    Prediction Markets
+                  </div>
+                </div>
               </div>
-              <div>
-                <span className="font-bold text-base tracking-tight text-white">Novyn</span>
-                <div className="text-[10px] text-textSecondary font-mono">Prediction Markets</div>
+
+              <p className="text-xs text-textSecondary leading-relaxed mb-4">
+                AI-powered decentralized prediction markets engineered on Litecoin's
+                first zk-rollup (LitVM). Fast, transparent, secure, and non-custodial.
+              </p>
+
+              <div className="flex items-center gap-3">
+                {socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-textSecondary hover:text-white transition-colors font-mono"
+                  >
+                    {social.name}
+                  </a>
+                ))}
               </div>
             </div>
-            <p className="text-xs text-textSecondary leading-relaxed mb-4">
-              AI-powered decentralized prediction markets engineered on Litecoin's first zk-rollup (LitVM). 
-              Fast, transparent, secure, and non-custodial.
-            </p>
-            <div className="flex items-center gap-3">
-              {['Twitter', 'Discord', 'Github'].map((social) => (
-                <a key={social} href="#" className="text-xs text-textSecondary hover:text-white transition-colors font-mono">
-                  {social}
-                </a>
-              ))}
-            </div>
-          </div>
-          
           <FooterCol title="Markets" links={[
             { label: 'All Prediction Markets', to: '/markets' },
             { label: 'BTC Asset Pools', to: '/markets' },
